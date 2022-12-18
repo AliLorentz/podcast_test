@@ -9,6 +9,7 @@ import X2JS from 'x2js';
 import ListPodcast from '../components/ListPodcast';
 import { useDispatch } from "../redux/store"
 import { setData as setDataPodcast } from '../redux/slices/podcast';
+import { setLoadingNavBar } from '../redux/slices/navBarLoading';
 
 
 function Podcast() {
@@ -18,6 +19,9 @@ function Podcast() {
   const { podcastId } = useParams();
 
   useEffect(() => {
+    dispatch(
+      setLoadingNavBar(true)
+    )
     async function fetchData() {
       let urlData;
       let image, artist;
@@ -66,6 +70,9 @@ function Podcast() {
       )
 
       setLoading(false)
+      dispatch(
+        setLoadingNavBar(false)
+      )
     }
     fetchData();
   }, []);

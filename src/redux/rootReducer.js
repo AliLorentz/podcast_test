@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 // slices
 import podcastReducer from './slices/podcast';
 import homePodcastReducer from './slices/homePodcast';
+import navbarReducer from './slices/navBarLoading'
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +15,8 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
   podcast: podcastReducer,
-  home: homePodcastReducer
+  home: homePodcastReducer,
+  navbar:navbarReducer
 });
 
 
