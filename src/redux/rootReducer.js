@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 //import storage from "redux-persist/lib/storage";
 // slices
-import podcastReducer from './slices/podcast'
+import podcastReducer from './slices/podcast';
+import homePodcastReducer from './slices/homePodcast';
 
 // ----------------------------------------------------------------------
 
@@ -12,9 +13,10 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  podcast : podcastReducer
+  podcast: podcastReducer,
+  home: homePodcastReducer
 });
 
 
 
-export { rootPersistConfig,rootReducer };
+export { rootPersistConfig, rootReducer };

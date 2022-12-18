@@ -1,29 +1,25 @@
 //import PodCast from "../components/Podcast";
 import { Row, Col, Container } from 'react-bootstrap';
-import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HomeCard from '../components/HomeCard';
+import { useDispatch,useSelector } from "../redux/store"
+import { setDataHome } from '../redux/slices/homePodcast';
 function Home() {
-  const [isLoading,setLoading] = useState(true)
-  const [dataPodCast, setData] = useState([]);
-  useEffect(() => {
-    async function getData() {
-      const result = await axios(
-        'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
-      );
-      setData(result.data.feed.entry)
-      setLoading(false)
+  const dispatch = useDispatch();
+  const { dataPodcast:dataPodCast,isLoading } = useSelector((state) => state.home);
+  useEffect(()=>{
+    if(isLoading){
+      dispatch(
+        setDataHome()
+      )
     }
-    getData();
-  }, [])
-
-
+  },[])
   return (
     <>
       {isLoading ? <p>Loading....</p>:
       <Container className='mb-5'>
       <Row>
-        {dataPodCast.map((item, i) => <Col md={3} key={i}> <HomeCard data={item} /></Col>)}
+        {!dataPodCast ? <p>Loading</p> : dataPodCast.map((item, i) => <Col md={3} key={i}> <HomeCard data={item} /></Col>)}
       </Row>
     </Container>}
     </>
