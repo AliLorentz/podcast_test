@@ -1,15 +1,14 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import {Button,Container,Form,Nav,Navbar} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
     <Container>
     <Navbar bg="light" expand="md" className='mt-2'>
       <Container fluid>
+        <Link style={{'textDecoration':'none'}} to="/">
         <Navbar.Brand >Podcaster</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
