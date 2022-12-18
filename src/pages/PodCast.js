@@ -7,10 +7,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import X2JS from 'x2js';
 import ListPodcast from '../components/ListPodcast';
+import { useDispatch } from "../redux/store"
+import { setData as setDataPodcast } from '../redux/slices/podcast';
 
 
 function Podcast() {
-  const [isLoading,setLoading] = useState(true)
+  const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(true)
   const [useData, setData] = useState({})
   const { podcastId } = useParams();
 
@@ -50,6 +53,18 @@ function Podcast() {
         episodes: jsonObj.channel.item,
         total: jsonObj.channel.item.length
       })
+
+      dispatch(
+        setDataPodcast({
+          image,
+          description: jsonObj.channel.description,
+          artist,
+          title: jsonObj.channel.title,
+          episodes: jsonObj.channel.item,
+          total: jsonObj.channel.item.length
+        })
+      )
+
       setLoading(false)
     }
     fetchData();
@@ -77,7 +92,7 @@ function Podcast() {
           <Card className=' shadow mb-4' style={{ padding: '10px' }}>
             <p className='h5'>Episodes: {useData.total}</p>
           </Card>
-          {isLoading ? <p>Loading... </p> :  <ListPodcast episodes={useData.episodes}/>}
+          {isLoading ? <p>Loading... </p> : <ListPodcast episodes={useData.episodes} />}
         </Col>
 
       </Row>

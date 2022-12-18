@@ -5,6 +5,7 @@ import { dispatch } from "../store";
 
 const initialState = {
   isLoading: true,
+  data: []
 };
 
 const slice = createSlice({
@@ -13,6 +14,9 @@ const slice = createSlice({
   reducers: {
     setLoading(state, action) {
       state.isLoading = action.payload;
+    },
+    setData(state, action) {
+      state.data = action.payload
     }
   },
 });
@@ -23,6 +27,14 @@ export default slice.reducer;
 export const { actions } = slice;
 
 // ----------------------------------------------------------------------
+
+export function setData(data = {}) {
+  return () => {
+    dispatch(slice.actions.setLoading(false))
+    dispatch(slice.actions.setData(data))
+
+  }
+}
 
 export function setLoading(value = true) {
   return () => {

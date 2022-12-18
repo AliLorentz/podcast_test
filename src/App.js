@@ -7,14 +7,14 @@ import { store} from "./redux/store";
 
 function App() {
   return (
-    <>
+
     <ReduxProvider store={store}>
       <BrowserRouter>
         <NavBar />
         <Router/>
       </BrowserRouter>
       </ReduxProvider>
-    </>
+
   );
 }
 
