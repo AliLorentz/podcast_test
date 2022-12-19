@@ -37,7 +37,8 @@ export const { actions } = slice;
 export function searchDataPodcast(word = '', data = {}) {
 
   return () => {
-    if (word.length <= 0) {
+    console.log(word)
+    if (word.length <= 1) {
       dispatch(slice.actions.setDataHome(data))
     }
 

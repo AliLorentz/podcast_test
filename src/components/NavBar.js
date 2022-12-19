@@ -14,7 +14,7 @@ function NavBar() {
   const handleChange = (event) => {
     setValue(event.target.value);
     dispatch(
-      searchDataPodcast(value, dataPodCast)
+      searchDataPodcast(event.target.value, dataPodCast)
     )
 
   };
@@ -40,13 +40,7 @@ function NavBar() {
             </Spinner> : <></>}
 
             <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                onChange={handleChange}
-              />
+            <input type="text" value={value} onChange={handleChange} />
             </Form>
           </Navbar.Collapse>
         </Container>
