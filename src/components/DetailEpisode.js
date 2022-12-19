@@ -1,7 +1,3 @@
-
-
-
-
 function DetailEpisode({ dataEpisode }) {
 
   function getTitle(item) {
